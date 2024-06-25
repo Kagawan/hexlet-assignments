@@ -15,16 +15,24 @@ public class Cottage implements Home {
         return area;
     }
 
+    public void setArea(double area) {
+        this.area = area;
+    }
+
     public int getFloorCount() {
         return floorCount;
     }
 
+    public void setFloorCount(int floorCount) {
+        this.floorCount = floorCount;
+    }
+
     @Override
     public String toString() {
-        return getFloorCount()
-                + " этажный коттедж площадью "
-                + getArea()
-                + " метров";
+        return getFloorCount() +
+                " этажный коттедж площадью " +
+                getArea() +
+                " метров";
     }
 
     @Override

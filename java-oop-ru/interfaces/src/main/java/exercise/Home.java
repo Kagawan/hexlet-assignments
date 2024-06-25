@@ -3,6 +3,6 @@ package exercise;
 // BEGIN
 public interface Home {
     double getArea();
-    double compareTo(Home home);
+    int compareTo(Home home);
 }
 // END

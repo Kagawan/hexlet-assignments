@@ -17,17 +17,33 @@ public class Flat implements Home {
         return area + balconyArea;
     }
 
+    public double getBalconyArea() {
+        return balconyArea;
+    }
+
     public int getFloor() {
         return floor;
     }
 
+    public void setArea(double area) {
+        this.area = area;
+    }
+
+    public void setBalconyArea(double balconyArea) {
+        this.balconyArea = balconyArea;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+
     @Override
     public String toString() {
-        return "Квартира площадью "
-                + getArea()
-                + " метров на "
-                + getFloor()
-                + " этаже";
+        return "Квартира площадью " +
+                getArea() +
+                " метров на "
+                + getFloor() +
+                " этаже";
     }
 
     @Override
