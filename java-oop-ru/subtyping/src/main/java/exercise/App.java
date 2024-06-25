@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 // BEGIN
-public interface App {
+public class App {
     public static void swapKeyValue(KeyValueStorage keyValueStorage) {
         Map<String, String> dataBase = keyValueStorage.toMap();
         String key;
