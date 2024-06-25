@@ -12,6 +12,7 @@ public class Flat implements Home {
         this.floor = floor;
     }
 
+    @Override
     public double getArea() {
         return area + balconyArea;
     }
@@ -20,15 +21,16 @@ public class Flat implements Home {
         return floor;
     }
 
+    @Override
     public String toString() {
-        return "Квартира площадью " +
-                getArea() +
-                " метров на "
-                + getFloor() +
-                " этаже";
+        return "Квартира площадью "
+                + getArea()
+                + " метров на "
+                + getFloor()
+                + " этаже";
     }
 
-
+    @Override
     public int compareTo(Home another) {
         return Double.compare(this.getArea(), another.getArea());
     }
