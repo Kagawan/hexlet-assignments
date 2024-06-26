@@ -4,7 +4,7 @@ package exercise;
 public class NegativeRadiusException extends Exception {
     private  String string;
 
-    public NegativeRadiusException() {}
+    public NegativeRadiusException() { }
     public NegativeRadiusException(String string) {
         this.string = string;
     }
