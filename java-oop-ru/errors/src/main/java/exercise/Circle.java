@@ -9,7 +9,7 @@ public class Circle {
         this.point = point;
         this.radius = radius;
     }
-    ublic double getSquare() throws NegativeRadiusException {
+    public double getSquare() throws NegativeRadiusException {
         if (radius < 0) {
             throw new NegativeRadiusException();
         }
