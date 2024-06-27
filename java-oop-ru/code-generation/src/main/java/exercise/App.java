@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import static exercise.Car.serialize;
 import static exercise.Car.unserialize;
+import com.fasterxml.jackson.core.JsonProcessingException;
 // BEGIN
 public class App {
     public static void save(Path path, Car car) throws JsonProcessingException, IOException {
