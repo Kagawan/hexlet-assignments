@@ -26,6 +26,7 @@ public final class App {
             for (int i = begin; i < end; i++) {
                 result.add(USERS.get(i));
             }
+            var jsonObject = context.json(result);
         });
         // END
 
