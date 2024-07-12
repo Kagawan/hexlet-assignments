@@ -3,7 +3,6 @@ package exercise;
 import io.javalin.Javalin;
 
 import java.util.List;
-import java.util.ArrayList;
 
 
 public final class App {
@@ -16,8 +15,8 @@ public final class App {
         var app = Javalin.create(config -> {
             config.bundledPlugins.enableDevLogging();
         });
-        app.get("/users", ctx -> ctx.result(phones));
-        app.get("/users", ctx -> ctx.result(domains));
+        app.get("/phones", ctx -> ctx.json(phones));
+        app.get("/domains", ctx -> ctx.json(domains));
         app.start(7070);
         // END
     }
