@@ -3,20 +3,21 @@
 
 @template.layout.page(
     content = @`
-        @for(var user : page.getUsers())
-            <table>
+        <h1>Пользователи</h1>
+        <table class="table table-striped">
+            @for(var user : page.getUsers())
                 <tr>
                     <td>
                         ${user.getId()}
                     </td>
                     <td>
-                        ${user.getFirstName()}
-                    </td>
-                    <td>
-                        ${user.getLastName()}
+                        <a href="/users/${user.getId()}">${user.getFirstName()} ${user.getLastName()}</a>
                     </td>
                 </tr>
-            </table>
-        @endfor
+            @endfor
+        </table>
+    `,
+    footer = @`
+        <p>Thanks for visiting, come again soon!</p>
     `
 )

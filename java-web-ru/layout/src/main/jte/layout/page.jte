@@ -1,30 +1,44 @@
-@import exercise.model.User
 @import gg.jte.Content
 @param Content content
+@param Content footer = null
 
 <!doctype html>
 <html lang="en">
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hexlet Javalin Example</title>
-</head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Hexlet Javalin Example</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+            crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">Users</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-<div class="form-control-dark">
-    <div class="header-right">
-        <a href="/">Start page</a>
-        <a href="/users">Users</a>
-    </div>
-</div>
+        <div class="mx-auto p-4 py-md-5">
+            ${content}
+        </div>
 
-<body>
-    ${content}
-</body>
+        @if (footer != null)
+            <footer class="text-center text-lg-start bg-light text-muted">
+                <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+                    ${footer}
+                </div>
+            </footer>
+        @endif
 
-<footer>
-    <p><a href="https://github.com/dashboard">GitHub link</a></p>
-</footer>
-
+    </body>
 </html>
 
