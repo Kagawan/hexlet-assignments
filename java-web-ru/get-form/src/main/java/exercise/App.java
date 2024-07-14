@@ -1,10 +1,15 @@
 package exercise;
 
 import io.javalin.Javalin;
+
+import java.util.ArrayList;
 import java.util.List;
 import exercise.model.User;
 import exercise.dto.users.UsersPage;
 import static io.javalin.rendering.template.TemplateUtil.model;
+import static org.eclipse.jetty.util.StringUtil.startsWithIgnoreCase;
+
+import io.javalin.http.NotFoundResponse;
 import io.javalin.rendering.template.JavalinJte;
 
 import org.apache.commons.lang3.StringUtils;
@@ -36,6 +41,7 @@ public final class App {
             }
             var page = new UsersPage(users, term);
             ctx.render("users/index.jte", model("page", page));
+        });
         // END
 
         app.get("/", ctx -> {
