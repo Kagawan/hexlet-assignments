@@ -1,35 +1,29 @@
 @import exercise.dto.posts.PostsPage
+@import exercise.util.NamedRoutes
 @param PostsPage page
 
-
 @template.layout.page(
+
 page = page,
 content = @`
-
-
-    @if(page.getPosts().isEmpty())
-        <p>Пока не добавлено ни одного курса</p>
-    @else
-
-        <table class="table table-primary table-striped table-bordered table-sm">
-
-            <thead>
+    <h1>Все посты</h1>
+    <div class="mb-3">
+        <a href="${NamedRoutes.buildPostPath()}">Создать новый пост</a>
+    </div>
+    <table class="table table-striped">
+        @for(var post : page.getPosts())
             <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Posts</th>
-
+                <td>
+                    ${post.getId()}
+                </td>
+                <td>
+                    <a href="${NamedRoutes.postPath(post.getId())}">${post.getName()}</a>
+                </td>
+                <td>
+                    ${post.getBody()}
+                </td>
             </tr>
-            </thead>
-
-            @for(var post : page.getPosts())
-                <tbody>
-                <tr>
-                    <td>${post.getName()}</td>
-                    <td><a href="/posts/${post.getId()}">${post.getName()}</a> </td>
-                </tr>
-                </tbody>
-            @endfor
-        </table>
-
-    @endif
-`)
+        @endfor
+    </table>
+`,
+)
