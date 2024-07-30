@@ -51,8 +51,8 @@ public class Application {
         return ResponseEntity.status(HttpStatus.CREATED).body(post);
     }
 
-    @PostMapping("/posts/{id}")
-    public ResponseEntity <Post> update(@PathVariable String id, @RequestBody Post data) {
+    @PutMapping("/posts/{id}")
+    public ResponseEntity<Post> update(@PathVariable String id, @RequestBody Post data) {
         var maybePost = posts.stream()
                 .filter(p -> p.getId().equals(id))
                 .findFirst();
@@ -61,8 +61,10 @@ public class Application {
             post.setId(data.getId());
             post.setTitle(data.getTitle());
             post.setBody(data.getBody());
+            return ResponseEntity.ok(data);
+        } else {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         }
-        return ResponseEntity.of(maybePost);
     }
     // END
 
