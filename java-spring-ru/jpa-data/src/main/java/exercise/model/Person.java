@@ -16,7 +16,7 @@ import lombok.Setter;
 public class Person {
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private Long id;
+    private long id;
 
     private String firstName;
 
