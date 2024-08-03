@@ -20,7 +20,7 @@ import exercise.exception.ResourceNotFoundException;
 
 // BEGIN
 @RestController
-@RequestMapping("/posts")
+@RequestMapping(path = "/posts")
 public class PostsController {
 
     @Autowired
@@ -28,41 +28,35 @@ public class PostsController {
     @Autowired
     private CommentRepository commentRepository;
 
-    @GetMapping(path = "")
+
+    @GetMapping
     public List<Post> index() {
         return postRepository.findAll();
     }
 
-    @GetMapping(path = "/{id}")
-    public Post show(@PathVariable long id) {
-        return postRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("post with id " + id + " not found"));
+    @GetMapping(path = "{id}")
+    public Post show(@PathVariable Long id) {
+        return postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found"));
     }
 
-    @PostMapping(path = "")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Post create(@RequestBody Post post) {
-        if (postRepository.findAll().contains(post)) {
-            throw new ResourceNotFoundException("Post " + post.getTitle() + " already exists");
-        }
-        return postRepository.save(post);
+    public Post create(@RequestBody Post body) {
+        postRepository.save(body);
+        return body;
     }
 
-    @PutMapping(path = "/{id}")
-    public Post update(@PathVariable long id, @RequestBody Post postData) {
-        var post =  postRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found"));
-
-        post.setTitle(postData.getTitle());
-        post.setBody(postData.getBody());
-
+    @PutMapping(path = "{id}")
+    public Post update(@PathVariable Long id, @RequestBody Post body) {
+        var post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found"));
+        post.setTitle(body.getTitle());
+        post.setBody(body.getBody());
         postRepository.save(post);
-
         return post;
     }
 
-    @DeleteMapping(path = "/{id}")
-    public void delete(@PathVariable long id) {
+    @DeleteMapping(path = "{id}")
+    public void destroy(@PathVariable Long id) {
         postRepository.deleteById(id);
         commentRepository.deleteByPostId(id);
     }

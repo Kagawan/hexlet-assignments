@@ -21,45 +21,37 @@ import exercise.exception.ResourceNotFoundException;
 // BEGIN
 @RestController
 @RequestMapping("/comments")
-
 public class CommentsController {
     @Autowired
     private CommentRepository commentRepository;
 
-    @GetMapping(path = "")
+    @GetMapping
     public List<Comment> index() {
         return commentRepository.findAll();
     }
 
-    @GetMapping(path = "/{id}")
-    public Comment show(@PathVariable long id) {
-        return commentRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("post with id " + id + " not found"));
+    @GetMapping(path = "{id}")
+    public Comment show(@PathVariable Long id) {
+        return commentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Comment with id " + id + " not found"));
     }
 
-    @PostMapping(path = "")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Comment create(@RequestBody Comment comment) {
-        if (commentRepository.findAll().contains(comment)) {
-            throw new ResourceNotFoundException("Comment " + comment.getBody() + " already exists");
-        }
-        return commentRepository.save(comment);
+    public Comment create(@RequestBody Comment body) {
+        commentRepository.save(body);
+        return body;
     }
 
-    @PutMapping(path = "/{id}")
-    public Comment update(@PathVariable long id, @RequestBody Comment commentData) {
-        var comment =  commentRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Comment with id " + id + " not found"));
-
-        comment.setBody(commentData.getBody());
-
+    @PutMapping(path = "{id}")
+    public Comment update(@PathVariable Long id, @RequestBody Comment body) {
+        var comment = commentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found"));
+        comment.setBody(body.getBody());
         commentRepository.save(comment);
-
         return comment;
     }
 
-    @DeleteMapping(path = "/{id}")
-    public void delete(@PathVariable long id) {
+    @DeleteMapping(path = "{id}")
+    public void destroy(@PathVariable Long id) {
         commentRepository.deleteById(id);
     }
 }
