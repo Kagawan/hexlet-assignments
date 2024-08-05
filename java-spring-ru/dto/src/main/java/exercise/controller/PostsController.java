@@ -18,8 +18,10 @@ import exercise.dto.CommentDTO;
 @RestController
 @RequestMapping("/posts")
 public class PostsController {
+
     @Autowired
-    private PostRepository postsRepository;
+    private PostRepository postRepository;
+
     @Autowired
     private CommentRepository commentsRepository;
 
@@ -34,6 +36,7 @@ public class PostsController {
 
     @GetMapping(path = "/{id}")
     public PostDTO show(@PathVariable long id) {
+
         var post =  postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found"));
 
