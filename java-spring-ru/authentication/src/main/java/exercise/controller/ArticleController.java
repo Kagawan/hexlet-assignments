@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-
 import exercise.exception.ResourceNotFoundException;
 import exercise.repository.ArticleRepository;
 import exercise.utils.JWTUtils;
@@ -48,21 +47,13 @@ public class ArticleController {
 
     // BEGIN
     @Autowired
-    private JWTUtils jwtUtils;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @PostMapping(path = "")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public String create(@RequestBody AuthRequest authRequest) {
-        var authentication = new UsernamePasswordAuthenticationToken(
-                authRequest.getUsername(), authRequest.getPassword());
-
-        authenticationManager.authenticate(authentication);
-
-        var token = jwtUtils.generateToken(authRequest.getUsername());
-        return token;
+    ArticleDTO create(@RequestBody ArticleCreateDTO articleCreateDTO) {
+        var article = articleMapper.map(articleCreateDTO);
+        article.setAuthor(userUtils.getCurrentUser());
+        articleRepository.save(article);
+        return articleMapper.map(article);
     }
     // END
 
