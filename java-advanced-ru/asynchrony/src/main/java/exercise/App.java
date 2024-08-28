@@ -50,8 +50,6 @@ class App {
     // END
 
     public static void main(String[] args) throws Exception {
-        // BEGIN
-        public static void main(String[] args) throws Exception {
             // BEGIN
             unionFiles("src/main/resources/file1.txt",
                     "src/main/resources/file2.txt",
