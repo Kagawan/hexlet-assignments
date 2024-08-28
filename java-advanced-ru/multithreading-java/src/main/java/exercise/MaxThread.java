@@ -1,5 +1,6 @@
 package exercise;
 
+
 // BEGIN
 public class MaxThread extends Thread {
     private int[] array;
@@ -20,4 +21,4 @@ public class MaxThread extends Thread {
         return max;
     }
 }
-// ENDD
+// END

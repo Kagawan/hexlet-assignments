@@ -20,4 +20,4 @@ public class MinThread extends Thread{
         return min;
     }
 }
-// ENDD
+// END
