@@ -1,12 +1,9 @@
 package exercise;
 
+import java.io.IOException;
+import java.nio.file.*;
 import java.util.concurrent.CompletableFuture;
-import java.util.Arrays;
-import java.nio.file.Paths;
-import java.nio.file.Path;
-import java.nio.file.Files;
-import java.io.File;
-import java.nio.file.StandardOpenOption;
+import java.util.concurrent.ExecutionException;
 
 class App {
 
@@ -50,10 +47,10 @@ class App {
     // END
 
     public static void main(String[] args) throws Exception {
-            // BEGIN
-            unionFiles("src/main/resources/file1.txt",
-                    "src/main/resources/file2.txt",
+        // BEGIN
+        unionFiles("src/main/resources/file1.txt",
+                "src/main/resources/file2.txt",
+                "src/main/resources/file3.txt");
         // END
     }
 }
-
